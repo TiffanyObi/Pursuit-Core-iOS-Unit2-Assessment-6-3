@@ -37,7 +37,15 @@ class CrayonListViewController: UIViewController {
         
     }
 
-            
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let colorDisplay = segue.destination as? DetailViewController,
+            let indexPath = tableView.indexPathForSelectedRow else {
+                fatalError("could not locate VC")
+        }
+        let colorShowing = colors[indexPath.row]
+        colorDisplay.colors = [colorShowing]
+    }
+   
 }
 
 
@@ -54,7 +62,16 @@ extension CrayonListViewController: UITableViewDataSource {
         
         
         colorCell.textLabel?.text = colorInRow.name
+        
+        if colorCell.textLabel?.text == "Black" {
+            colorCell.textLabel?.textColor = .white
+        }
+        
         colorCell.detailTextLabel?.text = colorInRow.hex
+        if colorCell.detailTextLabel?.text == "#000000" {
+            colorCell.detailTextLabel?.textColor = .white
+        }
+        
         colorCell.backgroundColor = UIColor(displayP3Red: CGFloat(colorInRow.red), green: CGFloat(colorInRow.green), blue: CGFloat(colorInRow.blue), alpha: 1)
         print("My blue color is \(colorInRow.blue)")
         
