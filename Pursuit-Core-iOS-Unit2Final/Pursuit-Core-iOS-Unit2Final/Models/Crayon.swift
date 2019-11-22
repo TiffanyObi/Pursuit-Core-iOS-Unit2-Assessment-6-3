@@ -6,7 +6,7 @@
 //  Copyright © 2018 Alex Paul. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Crayon {
   var name: String
@@ -39,4 +39,18 @@ class Crayon {
     Crayon(name: "Blue Green", red: 13, green: 152, blue: 186, hex: "#0D98BA"),
     Crayon(name: "Blue Violet", red: 115, green: 102, blue: 189, hex: "#7366BD")
   ]
+    
+    static func getSpecialColors() {
+
+        for color in allTheCrayons {
+            color.blue = color.blue / 255
+            color.red = color.red / 255
+            color.green = color.green / 255
+            
+        print(color.blue,color.red,color.green)
+
+    }
+
+}
+    
 }
